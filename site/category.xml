@@ -32,6 +32,7 @@
   <bundle id="org.apache.felix.eventadmin"><category name="AllMavenBundles"/></bundle>
   <bundle id="org.apache.servicemix.bundles.aopalliance"><category name="AllMavenBundles"/></bundle>
 
+  <bundle id="org.springframework.aop"><category name="AllMavenBundles"/></bundle>
   <bundle id="org.springframework.aspects"><category name="AllMavenBundles"/></bundle>
   <bundle id="org.springframework.beans"><category name="AllMavenBundles"/></bundle>
   <bundle id="org.springframework.context"><category name="AllMavenBundles"/></bundle>
