@@ -23,7 +23,6 @@
     <commons-logging-bundle-version>1.1.1</commons-logging-bundle-version>
     <felix-configadmin-bundle-version>1.4.0.redhat-610-SNAPSHOT</felix-configadmin-bundle-version>
     <felix-eventadmin-bundle-version>1.3.0.redhat-610-SNAPSHOT</felix-eventadmin-bundle-version>
-    <servicemix-utils-bundle-version>1.6.0.redhat-610-SNAPSHOT</servicemix-utils-bundle-version>
     <slf4j-log4j12-version>1.6.6</slf4j-log4j12-version>
     <springframework-bundle-version>3.1.3.RELEASE</springframework-bundle-version>
     <springframework-osgi-bundle-version>1.2.1</springframework-osgi-bundle-version>
@@ -31,15 +30,17 @@
 
   <build>
     <plugins>
+
       <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <version>${tychoVersion}</version>
-        <configuration>
-          <!-- allow Maven artifacts to be used for resolving p2 deps -->
-          <pomDependencies>consider</pomDependencies>
-        </configuration>
+	<groupId>org.eclipse.tycho</groupId>
+	<artifactId>target-platform-configuration</artifactId>
+	<version>${tychoVersion}</version>
+	<configuration>
+	  <!-- allow Maven artifacts to be used for resolving p2 deps -->
+	  <pomDependencies>consider</pomDependencies>
+	</configuration>
       </plugin>
+
       <plugin>
         <groupId>org.jboss.tools.tycho-plugins</groupId>
         <artifactId>repository-utils</artifactId>
@@ -97,7 +98,6 @@
   </build>
 
   <dependencies>
-
     <!-- Apache -->
     <dependency>
       <groupId>org.apache.aries.blueprint</groupId>
@@ -162,35 +162,21 @@
     </dependency>
 
     <!-- Springframework -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>org.springframework.aop</artifactId>
-      <version>${springframework-bundle-version}</version>
-    </dependency>
+    <!-- These bundles are included on the latest SpringIDE / STS update site, so don't need to be included here:
+          org.springframework.aop, org.springframework.beans, org.springframework.context,
+          org.springframework.core, org.springframework.expression, org.springframework.transaction
+        For 3.1.4.RELEASE,     see: http://download.jboss.org/jbosstools/updates/requirements/springide/3.2.0.201303060654-RELEASE-e4.3/
+        For 4.0.0.20130522-M1, see: http://download.jboss.org/jbosstools/updates/requirements/springide/3.3.0.201307091516-RELEASE/
+    -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>org.springframework.aspects</artifactId>
       <version>${springframework-bundle-version}</version>
     </dependency>
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>org.springframework.beans</artifactId>
-      <version>${springframework-bundle-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>org.springframework.context</artifactId>
-      <version>${springframework-bundle-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>org.springframework.core</artifactId>
-      <version>${springframework-bundle-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>org.springframework.expression</artifactId>
-      <version>${springframework-bundle-version}</version>
+      <groupId>org.springframework.osgi</groupId>
+      <artifactId>org.springframework.osgi.core</artifactId>
+      <version>${springframework-osgi-bundle-version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.osgi</groupId>
@@ -203,9 +189,9 @@
       <version>${springframework-osgi-bundle-version}</version>
     </dependency>
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>org.springframework.transaction</artifactId>
-      <version>${springframework-bundle-version}</version>
+      <groupId>org.springframework.osgi</groupId>
+      <artifactId>org.springframework.osgi.io</artifactId>
+      <version>${springframework-osgi-bundle-version}</version>
     </dependency>
   </dependencies>
 
@@ -233,9 +219,7 @@
       <url>http://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12/1.6.6</url>
     </repository>
   </repositories>
-
   <!--
     mvn install -Pmaximum -DBUILD_ID=2013-04-10_01-02-03 -DBUILD_NUMBER=314 -DBUILD_ALIAS=Beta1 -Dupdate.site.description="Stable Milestone" -DJOB_NAME=jbosstools-locus.site_master
   -->
-
 </project>
